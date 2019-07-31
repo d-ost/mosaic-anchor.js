@@ -163,7 +163,7 @@ class Anchor {
       })
       .then(function(organizationContract) {
         let abiBinProvider = new AbiBinProvider();
-        let jsonInterface = abiBinProvider.getABI('organization');
+        let jsonInterface = abiBinProvider.getABI('Organization');
         let orgContract = new destinationWeb3.eth.Contract(jsonInterface, organizationContract);
         return orgContract.methods.isOrganization(organization).call();
       })
