@@ -53,14 +53,24 @@ oJob.execute( iterations ).on('StateRootAvailable', function ( receipt ) {
 | iterations | No. of times state-root should be commited by this job. |
 
 
+### Executing a long running process which would continously commit root reading params from a config file
 
+```
+| Parameter | Description |
+| direction | o2a (originToAuxiliary) / a2o (auxiliaryToOrigin) |
+| config-file-path | json config file path (refer ./config.json.example for sample file) |
+```
+
+```js
+  node run.js commit <direction> <config-file-path>
+```
 
 ### Advanced Usage - Creating Anchor.
 Anchor class gives developers complete control which enables them build their own logic for anchroing state-roots.
 ```js
   const MosaicAnchor = require('mosaic-anchor.js');
   let sourceWeb3 = new Web3('http://....');
-  let destinationWeb3 = new Web3('http://....');;
+  let destinationWeb3 = new Web3('http://....');
   let address = "0x...";
   let organization = "0x...";
   let confirmations = 24;
