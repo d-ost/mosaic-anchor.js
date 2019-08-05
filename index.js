@@ -1,6 +1,5 @@
 'use strict';
 
-const Web3 = require('web3');
 const MosaicTbd = require('@openstfoundation/mosaic-tbd');
 
 module.exports = {
