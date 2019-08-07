@@ -17,13 +17,15 @@ program
       const auxiliaryAnchor = config.auxiliary.chain.anchor;
       const originOrganizationOwner = config.origin.chain.organizationOwner;
       const auxiliaryOrganizationOwner = config.auxiliary.chain.organizationOwner;
+      const originPassword = config.origin.chain.password;
+      const auxiliaryPassword = config.auxiliary.chain.password;
       const originConfirmations = 24;
       const auxiliaryConfirmations = 6;
       const originAnchorInterval = 60 * 60 * 1000; /* 60 minute */
       const auxiliaryAnchorInterval = 0.5 * 60 * 1000; /* 0.5 minute */
       let oJob;
       if (direction === 'o2a') {
-        auxiliaryWeb3.eth.personal.unlockAccount(auxiliaryOrganizationOwner, 'password', 100000000);
+        auxiliaryWeb3.eth.personal.unlockAccount(auxiliaryOrganizationOwner, auxiliaryPassword, 100000000);
         oJob = new Job(
           originWeb3,
           auxiliaryWeb3,
@@ -33,7 +35,7 @@ program
           auxiliaryAnchorInterval
         );
       } else if (direction === 'a2o') {
-        originWeb3.eth.personal.unlockAccount(originOrganizationOwner, 'password', 100000000);
+        originWeb3.eth.personal.unlockAccount(originOrganizationOwner, originPassword, 100000000);
         oJob = new Job(
           auxiliaryWeb3,
           originWeb3,

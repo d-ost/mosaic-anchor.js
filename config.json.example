@@ -3,7 +3,8 @@
     "chain": {
       "ws": "", // ws endpoint to make web3 calls
       "anchor": "", // address of the contract where we would commit state root
-      "organizationOwner": "" // owner of anchor's organization contract
+      "organizationOwner": "", // owner of anchor's organization contract
+      "password": "" //password to unlock owner key
     },
     "commitInterval": "", // (in minutes) interval in which we want to commit state root
     "confirmations": "" // Minimum no. of block confirmations needed before anchoring the state-root.
@@ -12,7 +13,8 @@
     "chain": {
       "ws": "", // ws endpoint to make web3 calls
       "anchor": "", // address of the contract where we would commit state root
-      "organizationOwner": "" // owner of anchor's organization contract
+      "organizationOwner": "", // owner of anchor's organization contract
+      "password": "" //password to unlock owner key
     },
     "commitInterval": "", // (in minutes) interval in which we want to commit state root
     "confirmations": "" // Minimum no. of block confirmations needed before anchoring the state-root.
