@@ -47,13 +47,19 @@ program
       } else {
         throw `unknown direction ${direction}`;
       }
-      oJob.execute( 1000 ).on('StateRootAvailable', function ( receipt ) {
-        console.log('State root has been anchored. receipt', JSON.stringify(receipt, null, 2));
-      }).then(function () {
-        console.log('Job completed.');
-      }).catch(function ( error ) {
-        console.log("Something went wrong.", error);
-      })
+      try {
+        oJob.execute( 1000 ).on('StateRootAvailable', function ( receipt ) {
+          console.log('State root has been anchored. receipt', JSON.stringify(receipt, null, 2));
+        }).then(function () {
+          console.log('Job completed.');
+        }).catch(function ( error ) {
+          console.log("Something went wrong.", error);
+          process.exit(0);
+        })
+      } catch (e) {
+        console.error('unhandled error', e);
+        process.exit(0);
+      }
     }
   );
 
