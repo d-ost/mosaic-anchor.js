@@ -21,8 +21,8 @@ program
       const auxiliaryPassword = config.auxiliary.chain.password;
       const originConfirmations = 24;
       const auxiliaryConfirmations = 6;
-      const originAnchorInterval = 60 * 60 * 1000; /* 60 minute */
-      const auxiliaryAnchorInterval = 0.5 * 60 * 1000; /* 0.5 minute */
+      const originAnchorInterval = parseInt(config.origin.commitInterval) * 60 * 1000; /* 60 minute */
+      const auxiliaryAnchorInterval = parseInt(config.auxiliary.commitInterval) * 60 * 1000; /* 0.5 minute */
       let oJob;
       if (direction === 'o2a') {
         auxiliaryWeb3.eth.personal.unlockAccount(auxiliaryOrganizationOwner, auxiliaryPassword, 100000000);
@@ -48,7 +48,7 @@ program
         throw `unknown direction ${direction}`;
       }
       try {
-        oJob.execute( 1000 ).on('StateRootAvailable', function ( receipt ) {
+        oJob.execute( 50 ).on('StateRootAvailable', function ( receipt ) {
           console.log('State root has been anchored. receipt', JSON.stringify(receipt, null, 2));
         }).then(function () {
           console.log('Job completed.');
