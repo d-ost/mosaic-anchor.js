@@ -21,11 +21,11 @@ program
       const auxiliaryPassword = config.auxiliary.chain.password;
       const originConfirmations = 24;
       const auxiliaryConfirmations = 6;
-      const originAnchorInterval = parseInt(config.origin.commitInterval) * 60 * 1000; /* 60 minute */
-      const auxiliaryAnchorInterval = parseInt(config.auxiliary.commitInterval) * 60 * 1000; /* 0.5 minute */
+      const originAnchorInterval = parseInt(config.origin.commitInterval) * 60 * 1000; /* minute to ms */
+      const auxiliaryAnchorInterval = parseInt(config.auxiliary.commitInterval) * 60 * 1000; /* minute to ms */
       let oJob;
       if (direction === 'o2a') {
-        auxiliaryWeb3.eth.personal.unlockAccount(auxiliaryOrganizationOwner, auxiliaryPassword, 100000000);
+        await auxiliaryWeb3.eth.personal.unlockAccount(auxiliaryOrganizationOwner, auxiliaryPassword, 100000000);
         oJob = new Job(
           originWeb3,
           auxiliaryWeb3,
@@ -35,7 +35,7 @@ program
           auxiliaryAnchorInterval
         );
       } else if (direction === 'a2o') {
-        originWeb3.eth.personal.unlockAccount(originOrganizationOwner, originPassword, 100000000);
+        await originWeb3.eth.personal.unlockAccount(originOrganizationOwner, originPassword, 100000000);
         oJob = new Job(
           auxiliaryWeb3,
           originWeb3,
