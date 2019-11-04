@@ -70,3 +70,5 @@ tmp/*
 
 # Config file
 config.json
+
+.idea/
