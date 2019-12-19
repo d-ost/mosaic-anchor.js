@@ -54,15 +54,15 @@ program
         })
         .then(function() {
           console.log('Job completed. Exiting!');
-          process.exit(1);
+          process.exit(0);
         })
         .catch(function(error) {
-          console.log('Something went wrong.', error);
-          process.exit(0);
+          console.error('Something went wrong.', error);
+          process.exit(1);
         });
     } catch (e) {
       console.error('unhandled error', e);
-      process.exit(0);
+      process.exit(1);
     }
   });
 
@@ -70,7 +70,7 @@ program
   .command('createWorker <chain> <config-file-path>' + ' <password>')
   .action(async (chain, configFilePath, password) => {
     if (!(chain === 'origin' || chain === 'auxiliary')) {
-      console.log(`Valid chain parameter value is ${chain}`);
+      console.error(`Valid chain parameter value is ${chain}`);
       process.exit(1);
     }
 
